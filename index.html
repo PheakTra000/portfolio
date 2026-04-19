@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Cyber Security</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #00ff41;
+            --neon-blue: #00d4ff;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0a0a0f;
+            --card-bg: #12121a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #888;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated grid background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 700;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+            animation: flicker 3s infinite;
+            letter-spacing: 4px;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.8; }
+            94% { opacity: 1; }
+            95% { opacity: 0.9; }
+            96% { opacity: 1; }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--neon-blue);
+            margin-top: 10px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #1a1a2e 100%);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue), var(--neon-pink));
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .avatar-ring {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+        }
+
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: var(--neon-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-green);
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .profile-bio {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Social Links */
+        .social-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 25px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-link.github:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+        }
+
+        .social-link.facebook:hover {
+            border-color: #1877f2;
+            box-shadow: 0 0 30px rgba(24, 119, 242, 0.2);
+        }
+
+        .social-link.instagram:hover {
+            border-color: #e4405f;
+            box-shadow: 0 0 30px rgba(228, 64, 95, 0.2);
+        }
+
+        .social-link.tiktok:hover {
+            border-color: #00f2ea;
+            box-shadow: 0 0 30px rgba(0, 242, 234, 0.2);
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.5rem;
+        }
+
+        .github .social-icon {
+            background: rgba(0, 255, 65, 0.1);
+            color: var(--neon-green);
+        }
+
+        .facebook .social-icon {
+            background: rgba(24, 119, 242, 0.1);
+            color: #1877f2;
+        }
+
+        .instagram .social-icon {
+            background: rgba(228, 64, 95, 0.1);
+            color: #e4405f;
+        }
+
+        .tiktok .social-icon {
+            background: rgba(0, 242, 234, 0.1);
+            color: #00f2ea;
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+        .social-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .social-handle {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .social-arrow {
+            color: var(--text-secondary);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link:hover .social-arrow {
+            transform: translateX(5px);
+            color: var(--neon-green);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 60px;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 25px;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-text span {
+            color: var(--neon-green);
+        }
+
+        /* Scanline effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.03),
+                rgba(0, 0, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        }
+
+        /* Cursor blink effect */
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 24px;
+            background: var(--neon-green);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 30px 20px;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .avatar-container {
+                width: 130px;
+                height: 130px;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-link {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="glitch">CYBER PORTFOLIO<span class="cursor"></span></h1>
+            <p class="subtitle">Digital Presence</p>
+        </header>
+
+        <section class="profile-section">
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <img src="https://i.pinimg.com/736x/84/d1/68/84d1682bb7f3dbb22d1b5bb3c51f4e85.jpg" alt="Profile Avatar" class="avatar">
+                </div>
+                <h2 class="profile-name">Yorn Pheaktra</h2>
+                <p class="profile-title">Cyber Security Student</p>
+                <p class="profile-bio">
+                    Geek everyday.
+                </p>
+            </div>
+        </section>
+
+        <section class="skills-section">
+            <h3 class="section-title">Expertise</h3>
+            <div class="skills-grid">
+                <span class="skill-tag">None</span>
+
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h3 class="section-title">Connect With Me</h3>
+            <div class="social-grid">
+                <a href="https://github.com/PheakTra000/" target="_blank" class="social-link github">
+                    <div class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="social-info">
+                        <div class="social-name">GitHub</div>
+                        <div class="social-handle">@PheakTra000</div>
+                    </div>
+                    <i class="fas fa-arrow-right social-arrow"></i>
+                </a>
+
+                <a href="https://www.instagram.com/yornpheaktra99" target="_blank" class="social-link instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-info">
+                        <div class="social-name">Instagram</div>
+                        <div class="social-handle">@yornpheaktra99</div>
+                    </div>
+                    <i class="fas fa-arrow-right social-arrow"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@pheaktrayorn3?_r=1&_t=ZS-95fJ6lA9LYC" target="_blank" class="social-link tiktok">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="social-info">
+                        <div class="social-name">TikTok</div>
+                        <div class="social-handle">@pheaktrayorn3</div>
+                    </div>
+                    <i class="fas fa-arrow-right social-arrow"></i>
+                </a>
+
+                <a href="https://web.facebook.com/pheaktra.yorn.14" target="_blank" class="social-link facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-info">
+                        <div class="social-name">Facebook</div>
+                        <div class="social-handle">@pheaktra.yorn.14s</div>
+                    </div>
+                    <i class="fas fa-arrow-right social-arrow"></i>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p class="footer-text">&lt;/&gt; with <span>♥</span> | Cyber Portfolio 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
